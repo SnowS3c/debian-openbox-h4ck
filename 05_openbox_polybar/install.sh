@@ -48,7 +48,7 @@ for d in /etc/skel /home/*/ ; do
 
 
 	cp -vr "${base_dir}/polybar/" "$d/.config/" && chown -R $(stat "$d" -c %u:%g) "$d/.config/polybar"
-    chmod +x "$d/.config/polybar/material/scripts/updates.sh" "$d/.config/polybar/material/launch.sh" "$d/.config/polybar/material/scripts/polywins.sh"
+    chmod +x "$d/.config/polybar/material/scripts/updates.sh" "$d/.config/polybar/material/launch.sh" "$d/.config/polybar/material/scripts/polywins.sh" "$d/.config/polybar/material/scripts/powermenu.sh"
 
     echo '~/.config/polybar/material/./launch.sh' >> "$d/.config/openbox/autostart"
 
