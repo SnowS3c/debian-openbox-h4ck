@@ -5,7 +5,7 @@
 # DESCRIPTION: 	Automatize installation of set of scripts
 # 				Search all install.sh scripts en subdirectories, list all of them and
 #				exec selected scripts
-# AUTHOR: Leonardo Marco
+# AUTHOR: Antonio Sánchez
 # VERSION: 1.0
 # CREATED: 2020.03.29
 # LICENSE: GNU General Public License v3.0
