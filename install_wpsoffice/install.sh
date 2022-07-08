@@ -1,7 +1,7 @@
 #!/bin/bash
 # ACTION: Install WPS Office Suite
 # INFO: WPS is a privative office suite very similar and compatible with Microsoft Office
-# DEFAULT: y
+# DEFAULT: n
 
 # Config variables
 base_dir="$(dirname "$(readlink -f "$0")")"

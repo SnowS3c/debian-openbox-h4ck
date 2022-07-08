@@ -1,5 +1,5 @@
 #!/bin/bash
-# ACTION: Install Google Chrome, add to repositories and set has default browser
+# ACTION: Install Google Chrome, add to repositories
 # INFO: Google Chrome is most popular web browser
 # INFO: Its recommended config official repositories for weekly updates
 # DEFAULT: y
@@ -21,6 +21,6 @@ apt-get install -y google-chrome-stable
 apt-get remove chromium
 
 # Set as default
-echo -e "\e[1mSetting as default alternative...\e[0m"
-update-alternatives --set x-www-browser /usr/bin/google-chrome-stable
-update-alternatives --set gnome-www-browser /usr/bin/google-chrome-stable
+#echo -e "\e[1mSetting as default alternative...\e[0m"
+#update-alternatives --set x-www-browser /usr/bin/google-chrome-stable
+#update-alternatives --set gnome-www-browser /usr/bin/google-chrome-stable

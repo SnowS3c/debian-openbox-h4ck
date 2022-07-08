@@ -1,6 +1,6 @@
 #!/bin/bash
 # ACTION: Install some popular fonts
-# INFO: Popular fonts: Liberation, Noto, Inconsolata, Droid Sans, Open Sans, Roboto, Microsoft fonts, Oswald, Overpass, Profont, and others.
+# INFO: Popular fonts: Liberation, Noto, Inconsolata, Droid Sans, Open Sans, Roboto, Microsoft fonts, Oswald, Overpass, Profont, Hack Nerd and others.
 # DEFAULT: y
 
 # Config variables
@@ -19,4 +19,9 @@ echo -e "\e[1mCopying fonts...\e[0m"
 [ ! -d /usr/share/fonts/extra ] && mkdir /usr/share/fonts/extra/
 tar -xzvf "$base_dir"/fonts.tgz -C /usr/share/fonts/extra/
 
+# Hack Nerd Fonts
+echo -e "\e[1mInstalling Hack Nerd Fonts...\e[0m"
+[ ! -d /usr/local/share/fonts ] && mkdir /usr/local/share/fonts/
+unzip "${base_dir}"/Hack.zip -d /usr/local/share/fonts
+fc-cache -v
 

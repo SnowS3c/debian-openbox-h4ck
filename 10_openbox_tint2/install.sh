@@ -1,7 +1,7 @@
 #!/bin/bash
 # ACTION: Install tint2 taskbar and config some taskbar/menu themes
 # INFO: Openbox dont include taskbar tool
-# DEFAULT: y
+# DEFAULT: n
 
 # Config variables
 base_dir="$(dirname "$(readlink -f "$0")")"
