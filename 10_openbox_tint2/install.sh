@@ -1,7 +1,7 @@
 #!/bin/bash
 # ACTION: Install tint2 taskbar and config some taskbar/menu themes
 # INFO: Openbox dont include taskbar tool
-# DEFAULT: y
+# DEFAULT: n
 
 # Config variables
 base_dir="$(dirname "$(readlink -f "$0")")"
@@ -15,7 +15,7 @@ echo -e "\e[1mInstalling packages...\e[0m"
 apt-get install -y tint2
 
 # Check if laptop or virtualmachine
-[ -d /proc/acpi/battery/BAT0 ] && laptop="true"
+[ -f /sys/module/battery/initstate ] || [ -d /proc/acpi/battery/BAT0 ] && laptop="true"
 # Check if virtualmachine:
 cat /proc/cpuinfo | grep -i hypervisor &>/dev/null && virtualmachine="true"
 

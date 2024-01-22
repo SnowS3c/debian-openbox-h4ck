@@ -1,4 +1,4 @@
-# Openbox script collection and pentesting tools for Debian 11/12
+# Openbox script collection and pentesting tools for Debian 11
 
 Thanks to [**`leomarcov`**](https://github.com/leomarcov/) for making the project [**`debian-openbox`**](https://github.com/leomarcov/debian-openbox).
 This project is based on that one but adding polybar, pentesting tools and some changes in the configuration of vim, tmux and terminator.

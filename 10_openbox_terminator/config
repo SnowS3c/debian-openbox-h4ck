@@ -1,7 +1,25 @@
 [global_config]
-  dbus = False
-  title_font = Monospace 10
+  inactive_color_offset = 1.0
   title_use_system_font = False
+  title_font = Monospace 10
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#23252e"
+    background_darkness = 0.95
+    background_type = transparent
+    cursor_color = "#6ab3b3"
+    cursor_color_fg = False
+    font = Hack Nerd Font 11
+    foreground_color = "#dbdedf"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scrollback_lines = 5000
+    scrollback_infinite = True
+    palette = "#2e3436:#b44444:#5ecb8c:#d9c964:#2371e2:#9a64d9:#64d9d5:#d3d7cf:#babdb6:#ef2929:#73d216:#d9cf8f:#729fcf:#b08fd9:#61e3e3:#d3d7cf"
+    use_system_font = False
+  [[Perfil nuevo1]]
+    cursor_color = "#aaaaaa"
 [layouts]
   [[default]]
     [[[child1]]]
@@ -12,17 +30,3 @@
       size = 680, 535
       type = Window
 [plugins]
-[profiles]
-  [[default]]
-    background_color = "#000000"
-    background_darkness = 1.0
-    cursor_color = "#6ab3b3"
-    cursor_color_fg = False
-    font = DejaVu Sans Mono 11
-    foreground_color = "#ecfefe"
-    palette = "#2e3436:#b44444:#5ecb8c:#d9c964:#3d6aac:#9a64d9:#64d9d5:#d3d7cf:#babdb6:#ef2929:#73d216:#d9cf8f:#729fcf:#b08fd9:#61e3e3:#d3d7cf"
-    scrollback_infinite = True
-    scrollback_lines = 5000
-    scrollbar_position = hidden
-    show_titlebar = False
-    use_system_font = False

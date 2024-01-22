@@ -1,6 +1,6 @@
 #!/bin/bash
 # ACTION: Install Terminator terminal and configs
-# INFO: Openbox dont include a virtual terminal tool
+# INFO: Install virtual terminal tool
 # DEFAULT: y
 
 # Config variables
@@ -11,7 +11,7 @@ base_dir="$(dirname "$(readlink -f "$0")")"
 
 # Install packages
 echo -e "\e[1mInstalling packages...\e[0m"
-[ "$(find /var/cache/apt/pkgcache.bin -mtime 0 2>/dev/null)" ] || apt-get update  
+[ "$(find /var/cache/apt/pkgcache.bin -mtime 0 2>/dev/null)" ] || apt-get update
 apt-get install -y terminator
 
 # Copy users config
@@ -22,11 +22,15 @@ for d in /etc/skel/  /home/*/ /root; do
 	# Create config folders if no exists
 	d="$d/.config/"; [ ! -d "$d" ] && mkdir -v "$d" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d"
 	
-	f="helpers.rc"
-	[ ! -d "$d/xfce4" ] && mkdir -v "$d/xfce4" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d/xfce4"
-	cp -v "$base_dir/$f" "$d/xfce4/" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d/xfce4/$f"
+	[ ! -d "$d/gtk-3.0/" ] && mkdir -v "$d/gtk-3.0/" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d/gtk-3.0"
+	cp -v "$base_dir/gtk.css" "$d/gtk-3.0/" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d/gtk-3.0"
+    
+    # change gnome-terminal to terminator
+    #sed -Ei 's/(gnome-terminal)/terminator\n#\t\1/' "$d/sxhkd/sxhkdrc"
 	
-	d="$d/terminator/"; [ ! -d "$d" ] && mkdir -v "$d" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d"
+    d="$d/terminator/"; [ ! -d "$d" ] && mkdir -v "$d" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d"
+	
 	f="config"
 	cp -v "$base_dir/$f" "$d/" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d/$f"
+
 done
