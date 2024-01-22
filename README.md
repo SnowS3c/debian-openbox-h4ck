@@ -134,6 +134,6 @@ The script can be easily customized. Each `install.sh` script placed in a subdir
 [GPLv3](LICENSE)
 
 ## Contact
-My name is Leonardo Marco. I'm sysadmin teacher in [CIFP Carlos III](https://cifpcarlos3.es/), Cartagena, Murcia (Spain).
+My name is Antonio Sánchez. I'm UNIX/LINUX system administrator in Spain.
 
-You can email me for suggestions, contributions, debian-openbox script help or share your feelings: labadmin@leonardomarco.com
+You can email me for suggestions, contributions, debian-openbox-h4ck script help or share your feelings: aslopez110@gmail.com
