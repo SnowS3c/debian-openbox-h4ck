@@ -1,7 +1,7 @@
 #!/bin/bash
 # ACTION: Install script to rotate everyday Linux solarized wallpapers pack by Andreas Linz
 # INFO: wallpaper-rotate script rotate everyday a link to a wallpaper file
-# DEFAULT: y
+# DEFAULT: n
 
 # Config variables
 base_dir="$(dirname "$(readlink -f "$0")")"

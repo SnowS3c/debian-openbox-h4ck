@@ -1,5 +1,5 @@
 #!/bin/bash
-# ACTION: Install Google Chrome, add to repositories and set has default browser
+# ACTION: Install Google Chrome, add to repositories
 # INFO: Google Chrome is most popular web browser
 # INFO: Its recommended config official repositories for weekly updates
 # DEFAULT: y
@@ -10,8 +10,8 @@
 # Install repositories and update
 if ! grep -R "dl.google.com/linux/chrome/deb/" /etc/apt/ &> /dev/null; then
 	echo -e "\e[1mConfiguring repositories...\e[0m"
-	wget -qO - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | gpg --dearmor --yes -o /usr/share/keyrings/googlechrome-keyring.gpg
-	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrome-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
+	echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - 
 	apt-get update
 fi
 
@@ -21,6 +21,6 @@ apt-get install -y google-chrome-stable
 apt-get remove chromium
 
 # Set as default
-echo -e "\e[1mSetting as default alternative...\e[0m"
-update-alternatives --set x-www-browser /usr/bin/google-chrome-stable
-update-alternatives --set gnome-www-browser /usr/bin/google-chrome-stable
+#echo -e "\e[1mSetting as default alternative...\e[0m"
+#update-alternatives --set x-www-browser /usr/bin/google-chrome-stable
+#update-alternatives --set gnome-www-browser /usr/bin/google-chrome-stable

@@ -5,7 +5,7 @@
 # DESCRIPTION: 	Automatize installation of set of scripts
 # 				Search all install.sh scripts en subdirectories, list all of them and
 #				exec selected scripts
-# AUTHOR: Leonardo Marco
+# AUTHOR: Antonio Sánchez
 # VERSION: 1.0
 # CREATED: 2020.03.29
 # LICENSE: GNU General Public License v3.0
@@ -59,23 +59,6 @@ C_LC="\e[96m"           # Color LIGHT CYAN
 C_N="\e[90m"            # Color GREY
 C_LN="\e[37m"           # Color LIGHT GREY
 
-
-#=== FUNCTION ======================================================================
-# NAME: stderr_red
-# DESCRIPTION: Show stederr in red color permanently
-#===================================================================================
-function stderr_red() {
-	exec 9>&2
-	exec 8> >(
-	    while IFS='' read -r line || [ -n "$line" ]; do
-	       echo -e "\033[31m${line}\033[0m"
-	    done
-	)
-	function undirect(){ exec 2>&9; }
-	function redirect(){ exec 2>&8; }
-	trap "redirect;" DEBUG
-	PROMPT_COMMAND='undirect;'
-}
 
 
 
@@ -298,12 +281,12 @@ function load_scripts() {
 # DESCRIPTION: check if current OS distro is compatible with this install script
 #
 # EXIT CODE
-#	0	IS Debian 10/11/12 compatible 
-#	1	IS NOT compatible 
+#	0	IS compatible
+#	1	IS NOT compamtible
 #===================================================================================
 function check_os_version() {
-	cat /etc/*release | grep -iq debian || return 1 
-	cat /etc/*release | egrep -iq "buster|stretch|bookworm" || return 1 
+	cat /etc/*release | grep -i debian &>/dev/null || return 1
+	cat /etc/*release | egrep -i "buster|stretch" &>/dev/null | return 1
 	return 0
 }
 
@@ -354,8 +337,8 @@ function main() {
 		[ "$(id -u)" -ne 0 ] && error_info "Administrative privileges needed" 1
 
 		# Check debian version
-		if ! check_os_version; then		
-			echo "Seems you are not running Debian compatible distro"
+		if ! check_os_version; then
+			echo "Seems you are not running Debian Buster distro"
 			echo "Some actions may fail. Cross your fingers and press enter..."
 			read
 		fi
@@ -376,7 +359,6 @@ function main() {
 	
 	# EXEC ACTIONS
 	else
-		stderr_red
 		[ "${#actions_sel[*]}" -gt 1 ] && list_actions
 		exec_actions
 	fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 # ACTION: Install vim editor, and apply some configs and plugins
-# INFO: Install vim-gtk3, plug plugin manager, airline statusbar and hybrid-material colorsheme
+# INFO: Install vim-gtk3, plug plugin manager, airline statusbar and gruvbox colorsheme
 # DEFAULT: y
 
 # Config variables
@@ -12,8 +12,8 @@ comment_mark='"DEBIAN-OPENBOX-vim'
 
 # Install vim
 echo -e "\e[1mInstalling packages...\e[0m"
-[ "$(find /var/cache/apt/pkgcache.bin -mtime 0 2>/dev/null)" ] || apt-get update  
-apt-get install -y vim nodejs
+[ "$(find /var/cache/apt/pkgcache.bin -mtime 0 2>/dev/null)" ] || apt-get update
+apt-get install -y vim-gtk3 nodejs
 
 # Config vim plug for global (all users)
 echo -e "\e[1mInstalling vim plugins for all users in /etc/vim/ ...\e[0m"
@@ -37,4 +37,8 @@ for d in  /etc/skel/  /home/*/ /root/; do
     [ "$(dirname "$d")" = "/home" ] && ! id "$(basename "$d")" &>/dev/null && continue	# Skip dirs that no are homes 
 	
 	cp -v "${base_dir}/vimrc" "$d/.vimrc" && chown -R $(stat "$(dirname "$d/.vimrc")" -c %u:%g) "$d/.vimrc"
+	[ ! -d "$d/.vim/colors" ] && mkdir -p "$d/.vim/colors/"
+	cp -v "${base_dir}/gruvbox.vim" "$d/.vim/colors/"
+
 done
+

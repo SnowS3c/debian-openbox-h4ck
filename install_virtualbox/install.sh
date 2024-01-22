@@ -1,11 +1,11 @@
 #!/bin/bash
-# ACTION: Install VirtualBox 7.0 and Extension Pack and add to repositories 
+# ACTION: Install VirtualBox 6.1 and Extension Pack and add to repositories 
 # INFO: VirtualBox is a free opensource hosted hypervisor
-# DEFAULT: y
+# DEFAULT: n
 
 # Config variables
-vb_package="virtualbox-7.0"
-ep_url="https://download.virtualbox.org/virtualbox/7.0.8/Oracle_VM_VirtualBox_Extension_Pack-7.0.8.vbox-extpack"
+vb_package="virtualbox-6.1"
+ep_url="https://download.virtualbox.org/virtualbox/6.1.34/Oracle_VM_VirtualBox_Extension_Pack-6.1.34.vbox-extpack"
 main_distro="$(cat /etc/apt/sources.list | grep ^deb | awk '{print $3}' | head -1)"
 
 # Check root
@@ -14,8 +14,9 @@ main_distro="$(cat /etc/apt/sources.list | grep ^deb | awk '{print $3}' | head -
 # Install repositories and update
 if ! grep -R "download.virtualbox.org" /etc/apt/ &> /dev/null; then
 	echo -e "\e[1mConfiguring repositories...\e[0m"	
-	wget -qO - "https://www.virtualbox.org/download/oracle_vbox_2016.asc" | gpg --dearmor --yes -o /usr/share/keyrings/virtualbox-keyring.gpg
-	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/virtualbox-keyring.gpg] http://download.virtualbox.org/virtualbox/debian $main_distro contrib" | tee /etc/apt/sources.list.d/virtualbox.list
+	echo "deb http://download.virtualbox.org/virtualbox/debian $main_distro contrib" > /etc/apt/sources.list.d/virtualbox.list
+	wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -
+	wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add -
 	apt-get update	
 fi
 
